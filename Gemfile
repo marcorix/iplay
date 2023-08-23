@@ -78,5 +78,5 @@ group :test do
 end
 
 gem "devise", "~> 4.9"
-
+gem "dotenv-rails"
 gem "geocoder", "~> 1.8"
