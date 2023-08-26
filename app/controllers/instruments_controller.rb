@@ -14,6 +14,11 @@ class InstrumentsController < ApplicationController
     @instrument = Instrument.new
   end
 
+  def show
+    @instrument = Instrument.find(params[:id])
+    @booking = Booking.new
+  end
+
   def create
     instrument = Instrument.new(instruments_params)
     instrument.user = current_user
@@ -27,6 +32,6 @@ class InstrumentsController < ApplicationController
 
   private
   def instruments_params
-    params.require(:instrument).permit(:product_name, :price, :category, :location, :img_url)
+    params.require(:instrument).permit(:product_name, :price, :category, :location, :img_url, :photo)
   end
 end
