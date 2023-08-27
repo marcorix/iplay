@@ -17,6 +17,8 @@ class InstrumentsController < ApplicationController
   def show
     @instrument = Instrument.find(params[:id])
     @booking = Booking.new
+    @reviews = Review.where(instrument: @instrument)
+    @review = Review.new
   end
 
   def create
