@@ -1,0 +1,9 @@
+      <%= simple_form_for [instrument, review],
+        data: {
+          insert_in_list_target: "form",
+          action: "submit->insert-in-list#send"
+        } do |f| %>
+        <%= f.input :comment, placeholder: "Write here a comment" %>
+        <%= f.input :rating, collection: [1, 2, 3, 4, 5] %>
+        <%= f.submit %>
+      <% end %>

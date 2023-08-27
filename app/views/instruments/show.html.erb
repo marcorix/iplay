@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" data-controller="insert-in-list">
   <h1><%= @instrument.product_name %></h1>
     <% if current_user.instruments.include?(@instrument) %>
       <h2>You own this instrument</h2>
@@ -9,17 +9,15 @@
         <%= f.submit %>
       <% end %>
       <hr>
-      <%= simple_form_for [@instrument, @review] do |f| %>
-        <%= f.input :comment, placeholder: "Write here a comment" %>
-        <%= f.input :rating, collection: [1, 2, 3, 4, 5] %>
-        <%= f.submit %>
-      <% end %>
+      <%= render 'reviews/form', {instrument: @instrument, review: @review} %>
     <% end %>
 
     <hr>
 
     <h4>Reviews:</h4>
-    <% @reviews.each do |review| %>
-      <%= render 'reviews/review', review: review %>
-    <% end %>
+    <ul data-insert-in-list-target="list">
+      <% @reviews.each do |review| %>
+        <li><%= render 'reviews/review', review: review %></li>
+      <% end %>
+    </ul>
 </div>

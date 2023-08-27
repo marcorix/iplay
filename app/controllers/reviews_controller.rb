@@ -31,10 +31,10 @@ class ReviewsController < ApplicationController
     respond_to do |format|
       if @review.save!
         format.html { redirect_to instrument_url(@instrument), notice: "Review was successfully created." }
-        # format.json { render :show, status: :created, location: @review }
+        format.json
       else
         format.html { render 'instruments/show', status: :unprocessable_entity }
-        format.json { render json: @review.errors, status: :unprocessable_entity }
+        format.json
       end
     end
   end
