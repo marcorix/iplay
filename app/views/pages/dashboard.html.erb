@@ -1,21 +1,49 @@
 <h1>My Dashboard</h1>
-<ul>
-  <% current_user.bookings_as_owner.each do |booking| %>
-    <li>
-      <div class="booking-card d-flex">
-        <p>
-          <%= booking.instrument.product_name %>
-          <%= booking.start_date.strftime('%A, %b %d') %>
-          <%= booking.end_date.strftime('%A, %b %d') %>
-        </p>
-        <div>
-          <% if booking.pending? %>
-            <%= render 'booking_request', booking: booking %>
-          <% else %>
-            <%= booking.status %>
-          <% end %>
-        </div>
-      </div>
+  <ul class="nav tabs-underlined" id="myTab" role="tablist">
+    <li class="nav-item" role="presentation">
+      <span class="nav-link tab-underlined active" id="bookings-tab" data-bs-toggle="tab" data-bs-target="#bookings-tab-pane" role="tab" aria-controls="bookings-tab-pane" aria-selected="true">Bookings</span>
     </li>
-  <% end %>
-</ul>
+    <li class="nav-item" role="presentation">
+      <span class="nav-link tab-underlined" id="requests-tab" data-bs-toggle="tab" data-bs-target="#requests-tab-pane" role="tab" aria-controls="requests-tab-pane" aria-selected="false">Requests</span>
+    </li>
+    <li class="nav-item" role="presentation">
+      <span class="nav-link tab-underlined" id="instruments-tab" data-bs-toggle="tab" data-bs-target="#instruments-tab-pane" role="tab" aria-controls="conversations-tab-pane" aria-selected="false">My Instruments</span>
+    </li>
+  </ul>
+
+
+
+
+<div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade py-3 show active" id="bookings-tab-pane" role="tabpanel" aria-labelledby="bookings-tab" tabindex="0">
+    This is the content for the Bookings tab. Notice in the tab HTML there is a href="#bookings". This is pointing to the id of this div..
+  </div>
+
+  <div class="tab-pane fade py-3" id="requests-tab-pane" role="tabpanel" aria-labelledby="requests-tab" tabindex="0">
+    <ul>
+      <% current_user.bookings_as_owner.each do |booking| %>
+        <li>
+          <div class="booking-card d-flex">
+            <p>
+              <%= booking.instrument.product_name %>
+              <%= booking.start_date.strftime('%A, %b %d') %>
+              <%= booking.end_date.strftime('%A, %b %d') %>
+            </p>
+            <div>
+              <% if booking.pending? %>
+                <%= render 'booking_request', booking: booking %>
+              <% else %>
+                <%= booking.status %>
+              <% end %>
+            </div>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+
+  <div class="tab-pane fade py-3" id="instruments-tab-pane" role="tabpanel" aria-labelledby="instruments-tab" tabindex="0">
+    This is the content for the Conversations tab. Notice in the tab HTML there is a href="#converstations". This is pointing to the id of this div.
+  </div>
+
+</div>

@@ -17,11 +17,11 @@ export default class extends Controller {
     .then(res => res.json())
     .then((data) => {
       console.log(data)
-      // if (data.inserted_item) {
-      //   this.listTarget.insertAdjacentHTML('afterbegin', `<li>${data.inserted_item}</li`)
-      // } else {
-      //   this.formTarget.outerHTML = data.form
-      // }
+      if (data.inserted_item) {
+        this.listTarget.insertAdjacentHTML('afterbegin', `<li>${data.inserted_item}</li`)
+      } else {
+        this.formTarget.outerHTML = data.form
+      }
     })
   }
 }

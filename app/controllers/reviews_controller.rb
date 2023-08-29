@@ -29,7 +29,7 @@ class ReviewsController < ApplicationController
     # @review.user = current_user
 
     respond_to do |format|
-      if @review.save!
+      if @review.save
         format.html { redirect_to instrument_url(@instrument), notice: "Review was successfully created." }
         format.json
       else
