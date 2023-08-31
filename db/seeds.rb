@@ -29,6 +29,15 @@ Instrument.create(
   user: alex
 )
 
+Instrument.create(
+  product_name: "Violin",
+  price: 450.00,
+  location: "204 Lavender Hill, London",
+  category: "strings",
+  img_url: "https://dotsmusiccamden.co.uk/cdn/shop/products/Genial_front_611x1000.jpg",
+  user: alex
+)
+
 puts "Creating Reviews"
 
 Review.create!(comment: "Amazing", user: alex, instrument: Instrument.first, rating: 4)

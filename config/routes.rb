@@ -6,7 +6,14 @@ Rails.application.routes.draw do
   resources :instruments do
     resources :bookings, only: [:new, :create]
     resources :reviews, only: [:create]
+
+    member do
+      get :favourite
+      get :unfavourite
+    end
   end
 
   resources :bookings, only: :update
+
+
 end

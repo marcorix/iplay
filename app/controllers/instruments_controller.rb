@@ -1,17 +1,29 @@
 class InstrumentsController < ApplicationController
   def index
     @instruments = Instrument.all
-      @markers = @instruments.geocoded.map do |instrument|
-        {
-          lat: instrument.latitude,
-          lng: instrument.longitude,
-          info_window_html: render_to_string(partial: "info_window", locals: {instrument: instrument})
-        }
-      end
+    @markers = @instruments.geocoded.map do |instrument|
+      {
+        lat: instrument.latitude,
+        lng: instrument.longitude,
+        info_window_html: render_to_string(partial: "info_window", locals: {instrument: instrument})
+      }
+    end
   end
 
   def new
     @instrument = Instrument.new
+  end
+
+  def favourite
+    @instrument = Instrument.find(params[:id])
+    current_user.favorite(@instrument)
+    redirect_to instruments_path
+  end
+
+  def unfavourite
+    @instrument = Instrument.find(params[:id])
+    current_user.unfavorite(@instrument)
+    redirect_to instruments_path
   end
 
   def show
@@ -33,6 +45,7 @@ class InstrumentsController < ApplicationController
   end
 
   private
+
   def instruments_params
     params.require(:instrument).permit(:product_name, :price, :category, :location, :img_url, :photo)
   end

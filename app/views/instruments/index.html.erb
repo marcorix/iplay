@@ -5,6 +5,17 @@
       <li>
         <%= link_to instrument.product_name, instrument_path(instrument) %>
         <%= image_tag instrument.img_url, width: 100 %>
+          <% if  instrument.user != current_user %>
+            <% if current_user.favorited?(instrument) %>
+              <%= link_to unfavourite_instrument_path(instrument) do %>
+                <i class="fa-regular fa-heart"></i>
+              <% end %>
+            <% else %>
+              <%= link_to favourite_instrument_path(instrument) do %>
+                <i class="fa-solid fa-heart"></i>
+              <% end %>
+            <% end %>
+          <% end %>
       </li>
     <% end %>
   </ul>
